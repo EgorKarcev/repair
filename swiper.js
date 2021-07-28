@@ -1,11 +1,11 @@
 let slid = document.querySelector(".swiper-container").classList;
-let ul = document.querySelector(".swiper-wrapper").classList;
-let list = document.querySelectorAll(".repair__row");
+const ul = document.querySelector(".swiper-wrapper");
+const list = ul.querySelectorAll(".repair__item");
 let buttonPokaz = document.querySelector(".button__pokaz");
 let buttonSkrit = document.querySelector(".button__skrit");
-let heig = document.querySelector(".repair__footer")
-buttonSkrit.style.display = "none";
-buttonPokaz.style.display = "none";
+let heig = document.querySelector(".repair__content")
+buttonSkrit.classList.add("nonactive");
+buttonPokaz.classList.add("nonactive");
 const breakpoint = window.matchMedia('(min-width:768px)');
 let mySwiper = new Swiper('.swiper-container', {
   slidesPerView: 2,
@@ -17,32 +17,37 @@ let mySwiper = new Swiper('.swiper-container', {
     clickable: true,
   }
 }) ;
-let raz = function razz(){ let raz = window.innerWidth;  return raz;}
+
+let non =  function () { 
+  list.forEach(function(item , i ){
+    item.classList.remove("nonactive");
+  })
+};
+
 let cheked = function vid() { 
   if (breakpoint.matches){
-    buttonPokaz.style.display = "block";
+    buttonPokaz.classList.add("active");
     status();
-  }
-  else if(!breakpoint.matches){
-    buttonSkrit.style.display = "none";
-    buttonPokaz.style.display = "none";
-  }
-  if (breakpoint.matches){
     mySwiper.destroy(true, true);
     mySwiper = null
     slid.remove("swiper-container");
-    ul.remove("swiper-wrapper");
+    ul.classList.remove("swiper-wrapper");
     document.querySelector('.repair__list').removeAttribute('id');
     document.querySelector('.repair__list').removeAttribute('aria-live');
     document.querySelector('.repair__list').removeAttribute('style');
-    for (let i = 0; i < list.length; i++){
-    list[i].classList.remove("swiper-slide");
-    list[i].removeAttribute("aria-label");
-    list[i].removeAttribute( "role");
-    list[i].removeAttribute( "style");
+    list.forEach(function(item ,i){
+    item.classList.remove("swiper-slide");
+    item.removeAttribute("aria-label");
+    item.removeAttribute( "role");
+    item.removeAttribute( "style");
     } 
+    )
   }
   else if(!breakpoint.matches){
+    buttonSkrit.classList.add("nonactive");
+    buttonPokaz.classList.add("nonactive");
+    buttonSkrit.classList.remove("active");
+    buttonPokaz.classList.remove("active");
     mySwiper = new Swiper('.swiper-container', {
       slidesPerView: 2,
       spaceBetween: 180,
@@ -56,31 +61,30 @@ let cheked = function vid() {
     );
     mySwiper.init() ;
     slid.add("swiper-container");
-    ul.add("swiper-wrapper");
+    ul.classList.add("swiper-wrapper");
     heig.removeAttribute("style");
-    for (let i = 0; i < list.length; i++){
-      list[i].classList.add("swiper-slide");
+    list.forEach(function(item, i){
+      item.classList.add("swiper-slide");
     }
+    )
   }
 }
 window.addEventListener("resize", cheked); 
 window.addEventListener("load", cheked); 
 let status = function stat() {
-  if (1120 < raz()){
-    buttonSkrit.style.display = "none";
-    buttonPokaz.style.display = "Block";
+  buttonSkrit.classList.remove("active");
+  buttonSkrit.classList.add("nonactive");
+  buttonPokaz.classList.add("active");
+  buttonPokaz.classList.remove("nonactive");
+  if (1120 < window.innerWidth){
     heig.style.height = "250px";
-    for (let i = 6; i < list.length; i++){
-      list[i].classList.remove("nonactive");
-    } 
+    non();
     for (let i = 8; i < list.length; i++){
         list[i].classList.add("nonactive");
         list[i].classList.remove("active");
       } 
   }
-  if (768 < raz() && raz() < 1120){
-    buttonSkrit.style.display = "none";
-    buttonPokaz.style.display = "Block";
+  if (768 < window.innerWidth && window.innerWidth < 1120){
     heig.style.height = "250px";
     for (let i = 6; i < list.length; i++){
         list[i].classList.add("nonactive");
@@ -91,21 +95,19 @@ let status = function stat() {
 };
 status();
 buttonPokaz.addEventListener("click", function stat() {
-  if (1120 < raz()){
-    buttonSkrit.style.display = "block";
-    buttonPokaz.style.display = "none";
+  buttonSkrit.classList.add("active");
+  buttonSkrit.classList.remove("nonactive");
+  buttonPokaz.classList.remove("active");
+  buttonPokaz.classList.add("nonactive");
+  if (1120 < window.innerWidth){
     heig.style.height = "370px";
-    for (let i = 6; i < list.length; i++){
-      list[i].classList.remove("nonactive");
-    } 
+    non();
     for (let i = 8; i < list.length; i++){
         list[i].classList.add("active");
         list[i].classList.remove("nonactive");
       } 
   }
-  if (768 < raz() && raz() < 1120){
-    buttonSkrit.style.display = "block";
-    buttonPokaz.style.display = "none";
+  if (768 < window.innerWidth && window.innerWidth < 1120){
     heig.style.height = "370px";
     for (let i = 6; i < list.length; i++){
         list[i].classList.add("active");

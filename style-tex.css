@@ -16,6 +16,12 @@
     font-weight: normal;
     font-style: normal;
     }
+    .nonactive {
+        display: none;
+    }
+    .active {
+        display: block;
+    } 
     body{
         padding: 0;
         margin: 0;
@@ -26,13 +32,29 @@
         outline: none;
         border: none;
     }
-    .repair__button:focus,  .repair__button:hover{
+    .repair__button:focus,  .repair__button:hover, .repair__butt:hover{
         outline: none;
         border: 3px solid #41F6D7;
         border-radius: 6px;
         cursor: pointer;
         cursor:grab;
        }
+    .repair__butt{
+        
+        display: flex;
+        justify-content: space-between;
+        height: 72px;
+        background-color: white;
+        width: 240px;
+        border-radius: 6px;
+        border: 3px solid transparent;
+    }
+    .repair__butt img{
+        max-width: 128px; 
+        max-height: 40px;
+        padding: 0px 10px 0 10px;
+        margin: 16px 0 16px 0;
+    }
 @media screen and (min-width: 320px){
     .repair{
         max-width: 320px;
@@ -40,25 +62,23 @@
         padding: 0;
         margin: 0;   
    }
-.repair__head{
+
+.repair__title{
     min-width: 320px;
     height: 80px;
     background: linear-gradient(90deg, #F8F8F8 0%, #FFFFFF 98.61%);
-}
-.repair__name{
     color:#7E7E82 ;
     line-height: 24px;
     padding-left: 20px;
     margin: 0;
-    padding-top: 10px;
+    padding-top: 15px;
 }
-.repair__footer{
+.repair__content{
     max-width: 320px;
     min-height: 154px;
-
     background-color: #F8F8F8;
 }
-    .repair__row{
+    .repair__item{
         z-index: 1;
    }
 
@@ -75,8 +95,9 @@
         display: flex;
    }
    .repair__button{
+   
+    text-decoration: none;
     background-color: transparent;
-    padding: 0 -10px 0 0px;
     border: 3px solid transparent;
    }
    .repair__shadow{
@@ -107,29 +128,30 @@ margin-right: 5px;
         padding: 0;
         margin: 0;   
    }
-.repair__head{
+
+.repair__title{
     min-width: 768px;
     height: 80px;
     background: linear-gradient(90deg, #F8F8F8 0%, #FFFFFF 98.61%);
-}
-.repair__name{
     color:#7E7E82 ;
     line-height: 24px;
     padding-left: 20px;
     margin: 0;
-    padding-top: 10px;
+    padding-top: 15px;
 }
-.repair__footer{
+.repair__content{
     max-width: 768px;
     min-height: 250px;
 
     background-color: #F8F8F8;
 }
 
-    .repair__row{
-        white-space:pre-line;
+    .repair__item{
+        padding-right: 5px;
+        padding-bottom: 10px;
         align-items: flex-start;
         z-index: 1;
+
    }
 
    .repair__list{
@@ -168,19 +190,8 @@ margin-right: 5px;
     display: none;
     
 }
-.repair__nav-krug{
-width: 12px;
-height: 12px;
-background-color: #DDDDDD;
-border-radius: 50%;
-margin-right: 5px;
-}
-.nonactive {
-    display: none;
-}
-.active {
-    display: block;
-} 
+
+
 .repair__further{
 font-size: 16px;
 margin-left: 20px;
@@ -202,30 +213,30 @@ margin-left: 20px;
         padding: 0;
         margin: 0;   
    }
-.repair__head{
+
+.repair__title{
     min-width: 1120px;
     height: 80px;
     background: linear-gradient(90deg, #F8F8F8 0%, #FFFFFF 98.61%);
-}
-.repair__name{
     color:#7E7E82 ;
     line-height: 24px;
     padding-left: 20px;
     margin: 0;
     padding-top: 10px;
 }
-.repair__footer{
+.repair__content{
     max-width: 1120px;
     min-height: 250px;
 
     background-color: #F8F8F8;
 }
 
-    .repair__row{
-        white-space:pre-line;
+    .repair__item{
+        padding-bottom: 15px;
         align-items: flex-start;
         z-index: 1;
         padding-right: 30px;
+        
    }
 
    .repair__list{
@@ -244,6 +255,7 @@ margin-left: 20px;
         display: flex;
    }
    .repair__button{
+
     background-color: transparent;
     padding: 0 0px 0 0px;
     border: 3px solid transparent;
@@ -264,19 +276,6 @@ margin-left: 20px;
     display: none;
     
 }
-.repair__nav-krug{
-width: 12px;
-height: 12px;
-background-color: #DDDDDD;
-border-radius: 50%;
-margin-right: 5px;
-}
-.nonactive {
-    display: none;
-}
-.active {
-    display: block;
-} 
 .repair__further{
 font-size: 16px;
 margin-left: 20px;
